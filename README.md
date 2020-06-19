@@ -19,3 +19,6 @@ docker-compose up --build -d
 curl http://localhost:8080/api/health
 docker-compose down
 ```
+
+#Alternatively, test with this command:
+`docker inspect --format="{{json .State.Health}}" spring-boot-docker-starter_app_1`
