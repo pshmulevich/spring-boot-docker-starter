@@ -5,7 +5,7 @@ RUN apk --update add curl
 RUN mkdir /app
 
 # Copy everything in the project into /app
-COPY ./target/spring-boot-docker-starter-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY ./build/libs/spring-boot-docker-gradle-starter-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Switch to /app folder
 WORKDIR /app

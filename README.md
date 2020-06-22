@@ -3,16 +3,16 @@
 ## Setting up Spring Boot Application
 
 ### Build your project:
-`mvn clean package`
+`gradlew clean build`
 
 ### Run and test your project locally: 
 ```
 # Start the application and press ctrl-C to stop it at the end
-java -jar target/spring-boot-docker-starter-0.0.1-SNAPSHOT.jar
+`java -jar build/libs/spring-boot-docker-gradle-starter-0.0.1-SNAPSHOT.jar`
 
-# or using maven plugin:
+# or using gradle plugin:
 
-mvn spring-boot:run
+`gradlew bootRun`
 
 # From another terminal window, verify the application is running
 curl http://localhost:8080/api/health
@@ -34,13 +34,13 @@ docker-compose down
 
 ### Test health status with this command:
 ```
-docker inspect --format="{{json .State.Health}}" spring-boot-docker-starter_app_1
+docker inspect --format="{{json .State.Health}}" spring-boot-docker-gradle-starter_app_1
 # Or
-docker inspect --format="{{json .State.Health.Status}}" spring-boot-docker-starter_app_1
+docker inspect --format="{{json .State.Health.Status}}" spring-boot-docker-gradle-starter_app_1
 ```
 
 #### Use python to pretty print the json output of your response:
-`docker inspect --format="{{json .State.Health}}" spring-boot-docker-starter_app_1 | python -m json.tool`
+`docker inspect --format="{{json .State.Health}}" spring-boot-docker-gradle-starter_app_1 | python -m json.tool`
 
 ## Using Spring Boot Actuator
 
@@ -53,10 +53,9 @@ docker inspect --format="{{json .State.Health.Status}}" spring-boot-docker-start
 `http://localhost:8080/actuator/info`
 
 #### Shut down the application (not the container) to see change in health status:
-`curl -X POST http://localhost:8080/actuator/shutdown -k`
+`curl -X POST http://localhost:8080/actuator/shutdown`
 
 #### Check status after shutting down the app:
-`docker inspect --format="{{json .State.Health.Status}}" spring-boot-docker-starter_app_1`
+`docker inspect --format="{{json .State.Health.Status}}" spring-boot-docker-gradle-starter_app_1`
 
 expect to see: `"unhealthy"`
-
